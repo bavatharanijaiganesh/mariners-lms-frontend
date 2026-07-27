@@ -1,0 +1,228 @@
+[
+  {
+    "id": "c1",
+    "category": "Captain License",
+    "courseName": "OUPV/Six-Pack Captain's License",
+    "feeUSD": 695,
+    "estimatedDuration": "25–30 hrs average (57 hrs course content)",
+    "description": "The OUPV/Six-Pack Captain's License allows you to take up to six paying passengers and crew on the water. This course covers navigation, rules of the road, and safety.",
+    "popular": true
+  },
+  {
+    "id": "c2",
+    "category": "Captain License",
+    "courseName": "25/50 or 100-Ton Master Captain's License",
+    "feeUSD": 895,
+    "estimatedDuration": "50–55 hrs average",
+    "description": "Required for operating inspected vessels. This comprehensive program builds upon basic nautical knowledge to ensure you're prepared for the master license.",
+    "popular": true
+  },
+  {
+    "id": "c3",
+    "category": "Captain License Upgrade",
+    "courseName": "OUPV Upgrade to 25/50 or 100-Ton Master",
+    "feeUSD": 375,
+    "estimatedDuration": "~20–25 hrs (estimated based on upgrade scope)",
+    "description": "Upgrade your existing OUPV license to a Master license. Streamlined curriculum focusing on the advanced topics required for larger vessel operation."
+  },
+  {
+    "id": "e1",
+    "category": "Endorsement",
+    "courseName": "Assistance Towing Endorsement",
+    "feeUSD": 150,
+    "estimatedDuration": "3–6 hrs",
+    "description": "Add an assistance towing endorsement to your OUPV or Master's license, enabling you to legally engage in commercial towing operations."
+  },
+  {
+    "id": "e2",
+    "category": "Endorsement",
+    "courseName": "Auxiliary Sailing Endorsement",
+    "feeUSD": 150,
+    "estimatedDuration": "3–6 hrs",
+    "description": "Required for operating inspected sailing vessels. Learn the specific regulations and rules of the road for sail-powered vessels."
+  },
+  {
+    "id": "lr1",
+    "category": "License Renewal",
+    "courseName": "Deck License Renewal",
+    "feeUSD": 250,
+    "estimatedDuration": "10–15 hrs",
+    "description": "Fulfill your USCG requirements for deck license renewal with our updated and compliant renewal course."
+  },
+  {
+    "id": "rb1",
+    "category": "Recreational Boating",
+    "courseName": "Mariners Crew",
+    "feeUSD": 125,
+    "estimatedDuration": "4–8 hrs",
+    "description": "A fundamental course for recreational boaters focusing on basic safety, terminology, and crew responsibilities."
+  },
+  {
+    "id": "rb2",
+    "category": "Recreational Boating",
+    "courseName": "Mariners Skipper",
+    "feeUSD": 245,
+    "estimatedDuration": "8–15 hrs",
+    "description": "Step up to the helm with confidence. This course covers navigation, handling, and rules of the road for recreational skippers."
+  },
+  {
+    "id": "rb3",
+    "category": "Recreational Boating",
+    "courseName": "Mariners Master Skipper of Power",
+    "feeUSD": 345,
+    "estimatedDuration": "15–25 hrs",
+    "description": "Advanced powerboat handling and navigation for the dedicated recreational powerboater."
+  },
+  {
+    "id": "rb4",
+    "category": "Recreational Boating",
+    "courseName": "Mariners Master Skipper of Sail",
+    "feeUSD": 345,
+    "estimatedDuration": "15–25 hrs",
+    "description": "Master the art of sailing. In-depth coverage of sail trim, advanced navigation, and sail-specific safety."
+  },
+  {
+    "id": "rb5",
+    "category": "Recreational Boating",
+    "courseName": "Mariners Master Skipper of Power & Sail",
+    "feeUSD": 375,
+    "estimatedDuration": "20–30 hrs",
+    "description": "The ultimate recreational boating education, combining the curriculums of both Power and Sail Master Skipper courses."
+  },
+  {
+    "id": "ru1",
+    "category": "Recreational Upgrade",
+    "courseName": "Crew Upgrade to Mariners Skipper",
+    "feeUSD": 179,
+    "estimatedDuration": "4–8 hrs",
+    "description": "Transition from crew member to taking command of the vessel."
+  },
+  {
+    "id": "ru2",
+    "category": "Recreational Upgrade",
+    "courseName": "Skipper Upgrade to Master Skipper of Power",
+    "feeUSD": 125,
+    "estimatedDuration": "6–10 hrs",
+    "description": "Elevate your powerboating skills with this advanced skipper upgrade."
+  },
+  {
+    "id": "ru3",
+    "category": "Recreational Upgrade",
+    "courseName": "Skipper Upgrade to Master Skipper of Sail",
+    "feeUSD": 125,
+    "estimatedDuration": "6–10 hrs",
+    "description": "Take your sailing knowledge to the master level with advanced techniques."
+  },
+  {
+    "id": "ru4",
+    "category": "Recreational Upgrade",
+    "courseName": "Skipper Upgrade to Master Skipper of Power & Sail",
+    "feeUSD": 150,
+    "estimatedDuration": "8–12 hrs",
+    "description": "Comprehensive upgrade path to achieve Master Skipper status in both power and sail."
+  },
+  {
+    "id": "fcc1",
+    "category": "FCC License",
+    "courseName": "Marine Radio Operator Permit (MROP)",
+    "feeUSD": 150,
+    "estimatedDuration": "2–4 hrs",
+    "description": "Essential training for operating marine radios. Covers FCC regulations, operating procedures, and emergency protocols."
+  },
+  {
+    "id": "fcc2",
+    "category": "FCC License",
+    "courseName": "General Radiotelephone Operator License (GROL)",
+    "feeUSD": 150,
+    "estimatedDuration": "4–8 hrs",
+    "description": "Prepare for the GROL exam with comprehensive coverage of radio law, operating procedures, and basic electronics."
+  },
+  {
+    "id": "fcc3",
+    "category": "FCC License",
+    "courseName": "GMDSS Radio Operator License",
+    "feeUSD": 150,
+    "estimatedDuration": "4–8 hrs",
+    "description": "Training for operating Global Maritime Distress and Safety System equipment."
+  },
+  {
+    "id": "fcc4",
+    "category": "FCC License",
+    "courseName": "Restricted GMDSS Radio Operator License",
+    "feeUSD": 150,
+    "estimatedDuration": "2–4 hrs",
+    "description": "Focused training for operating specific GMDSS equipment in restricted sea areas."
+  },
+  {
+    "id": "fcc5",
+    "category": "FCC License",
+    "courseName": "GMDSS Radio Maintainer License",
+    "feeUSD": 225,
+    "estimatedDuration": "6–10 hrs",
+    "description": "Technical training for maintaining and repairing GMDSS equipment."
+  },
+  {
+    "id": "fcc6",
+    "category": "FCC License",
+    "courseName": "GMDSS Operator/Maintainer License",
+    "feeUSD": 300,
+    "estimatedDuration": "8–12 hrs",
+    "description": "Combined course for those who will both operate and maintain GMDSS systems."
+  },
+  {
+    "id": "fcce1",
+    "category": "FCC Endorsement",
+    "courseName": "Ship Radar Endorsement",
+    "feeUSD": 85,
+    "estimatedDuration": "1–2 hrs",
+    "description": "Add a radar endorsement to your existing FCC license. Covers radar operation and regulations."
+  },
+  {
+    "id": "fcx1",
+    "category": "FCC Exam",
+    "courseName": "Element 1 Exam",
+    "feeUSD": 85,
+    "estimatedDuration": "1 hr",
+    "description": "Proctored examination for FCC Element 1: Basic radio law and operating practice."
+  },
+  {
+    "id": "fcx2",
+    "category": "FCC Exam",
+    "courseName": "Element 3 Exam",
+    "feeUSD": 85,
+    "estimatedDuration": "1 hr",
+    "description": "Proctored examination for FCC Element 3: General radiotelephone."
+  },
+  {
+    "id": "fcx3",
+    "category": "FCC Exam",
+    "courseName": "Element 7 Exam",
+    "feeUSD": 85,
+    "estimatedDuration": "1 hr",
+    "description": "Proctored examination for FCC Element 7: GMDSS radio operating practices."
+  },
+  {
+    "id": "fcx4",
+    "category": "FCC Exam",
+    "courseName": "Element 7R Exam",
+    "feeUSD": 85,
+    "estimatedDuration": "1 hr",
+    "description": "Proctored examination for FCC Element 7R: Restricted GMDSS radio operating practices."
+  },
+  {
+    "id": "fcx5",
+    "category": "FCC Exam",
+    "courseName": "Element 8 Exam",
+    "feeUSD": 85,
+    "estimatedDuration": "1 hr",
+    "description": "Proctored examination for FCC Element 8: Ship radar techniques."
+  },
+  {
+    "id": "fcx6",
+    "category": "FCC Exam",
+    "courseName": "Element 9 Exam",
+    "feeUSD": 85,
+    "estimatedDuration": "1 hr",
+    "description": "Proctored examination for FCC Element 9: GMDSS radio maintenance practices and procedures."
+  }
+]
