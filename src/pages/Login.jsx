@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom';
 import { Ship, Mail, Lock, ArrowRight } from 'lucide-react';
 import authBg from '../assets/images/auth_bg.png';
 import { loginUser } from "../services/authService";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -38,7 +40,22 @@ export default function Login() {
         JSON.stringify(response.data.user)
       );
 
+      // const profile = await getProfile();
+
+      const user = response.data.user;
       alert("Login Successful");
+
+      if (user.role === "ADMIN") {
+
+        navigate("/admin/dashboard");
+
+      } else {
+
+        navigate("/student/dashboard");
+
+      }
+
+
 
       // later we will navigate to dashboard
 

@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from "react";
 import { Link, useLocation } from 'react-router-dom';
+// import { useNavigate } from "react-router-dom";
 import { Menu, X, Ship, User, ShoppingCart } from 'lucide-react';
 import { cn } from '../utils/cn';
 
@@ -14,6 +15,32 @@ const NAV_LINKS = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  // const navigate = useNavigate();
+  const token = localStorage.getItem("access");
+
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+
+    const loggedInUser = JSON.parse(localStorage.getItem("user"));
+
+    if (loggedInUser) {
+
+      setUser(loggedInUser);
+
+    }
+
+  }, []);
+
+  const handleLogout = () => {
+
+    localStorage.removeItem("access");
+    localStorage.removeItem("refresh");
+    localStorage.removeItem("user");
+
+    window.location.href = "/";
+
+  };
 
   return (
     <nav className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-md border-b border-[var(--color-border)] transition-all duration-300">
@@ -57,28 +84,67 @@ export default function Navbar() {
 
           {/* Actions Section */}
           <div className="hidden md:flex items-center gap-4">
+            {user && (
+
+              <p className="font-semibold text-blue-600">
+
+                Welcome {user.full_name}
+
+              </p>
+
+            )}
             <button className="p-2 text-[var(--color-body)] hover:text-[var(--color-primary)] transition-colors relative">
               <ShoppingCart className="h-5 w-5" />
               <span className="absolute top-1 right-1 h-2 w-2 rounded-full bg-[var(--color-accent)]"></span>
             </button>
-            <Link
-              to="/login"
-              className="flex items-center gap-2 px-5 py-2.5 rounded-xl font-medium text-[var(--color-primary)] bg-white border-2 border-[var(--color-primary)] hover:bg-primary/5 transition-all active:scale-95"
-            >
-              <User className="h-4 w-4" />
-              Login
-            </Link>
-            <Link
-              to="/register"
-              className="px-5 py-2.5 rounded-xl font-medium text-white bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] shadow-lg shadow-primary/30 transition-all hover:shadow-primary/50 active:scale-95"
-            >
-              Enroll Now
-            </Link>
+            {
+              token ? (
+
+                <>
+                  <Link
+                    to="/profile"
+                    className="flex items-center gap-2 px-5 py-2.5 rounded-xl font-medium text-[var(--color-primary)] border"
+                  >
+                    <User className="h-4 w-4" />
+
+                    Profile
+                  </Link>
+
+                  <button
+                    onClick={handleLogout}
+                    className="px-5 py-2.5 rounded-xl text-white bg-red-500"
+                  >
+                    Logout
+                  </button>
+                </>
+
+              ) : (
+
+                <>
+                  <Link
+                    to="/login"
+                    className="flex items-center gap-2 px-5 py-2.5 rounded-xl font-medium text-[var(--color-primary)] bg-white border-2 border-[var(--color-primary)]"
+                  >
+                    <User className="h-4 w-4" />
+
+                    Login
+                  </Link>
+
+                  <Link
+                    to="/register"
+                    className="px-5 py-2.5 rounded-xl font-medium text-white bg-[var(--color-primary)]"
+                  >
+                    Enroll Now
+                  </Link>
+
+                </>
+              )
+            }
           </div>
 
           {/* Mobile menu button */}
           <div className="flex items-center md:hidden gap-4">
-             <button className="p-2 text-[var(--color-body)]">
+            <button className="p-2 text-[var(--color-body)]">
               <ShoppingCart className="h-6 w-6" />
             </button>
             <button
@@ -114,20 +180,49 @@ export default function Navbar() {
               );
             })}
             <div className="mt-6 flex flex-col gap-3 px-3">
-              <Link
-                to="/login"
-                onClick={() => setIsOpen(false)}
-                className="w-full flex justify-center items-center gap-2 px-5 py-3 rounded-xl font-medium text-[var(--color-primary)] border-2 border-[var(--color-primary)] hover:bg-primary/5"
-              >
-                Login
-              </Link>
-              <Link
-                to="/register"
-                onClick={() => setIsOpen(false)}
-                className="w-full text-center px-5 py-3 rounded-xl font-medium text-white bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] shadow-md"
-              >
-                Enroll Now
-              </Link>
+              {
+                token ? (
+
+                  <>
+                    <Link
+                      to="/profile"
+                      className="flex items-center gap-2 px-5 py-2.5 rounded-xl font-medium text-[var(--color-primary)] border"
+                    >
+                      <User className="h-4 w-4" />
+
+                      Profile
+                    </Link>
+
+                    <button
+                      onClick={handleLogout}
+                      className="px-5 py-2.5 rounded-xl text-white bg-red-500"
+                    >
+                      Logout
+                    </button>
+                  </>
+
+                ) : (
+
+                  <>
+                    <Link
+                      to="/login"
+                      className="flex items-center gap-2 px-5 py-2.5 rounded-xl font-medium text-[var(--color-primary)] bg-white border-2 border-[var(--color-primary)]"
+                    >
+                      <User className="h-4 w-4" />
+
+                      Login
+                    </Link>
+
+                    <Link
+                      to="/register"
+                      className="px-5 py-2.5 rounded-xl font-medium text-white bg-[var(--color-primary)]"
+                    >
+                      Enroll Now
+                    </Link>
+
+                  </>
+                )
+              }
             </div>
           </div>
         </div>
