@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from 'react-router-dom';
 // import { useNavigate } from "react-router-dom";
-import { Menu, X, Ship, User, ShoppingCart } from 'lucide-react';
+import { Menu, X, Ship, User, ShoppingCart, LayoutDashboard } from 'lucide-react';
 import { cn } from '../utils/cn';
 
 const NAV_LINKS = [
@@ -41,6 +41,8 @@ export default function Navbar() {
     window.location.href = "/";
 
   };
+
+  const dashboardPath = user?.role === "ADMIN" ? "/admin/dashboard" : "/student/dashboard";
 
   return (
     <nav className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-md border-b border-[var(--color-border)] transition-all duration-300">
@@ -102,8 +104,17 @@ export default function Navbar() {
 
                 <>
                   <Link
+                    to={dashboardPath}
+                    className="flex items-center gap-2 px-3 py-1.5 rounded-xl font-semibold text-white text-xs bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] shadow-md transition-all"
+                  >
+                    <LayoutDashboard className="h-4 w-4" />
+
+                    Dashboard
+                  </Link>
+
+                  <Link
                     to="/profile"
-                    className="flex items-center gap-2 px-5 py-2.5 rounded-xl font-medium text-[var(--color-primary)] border"
+                    className="flex items-center text-xs gap-2 px-3 py-1.5 rounded-xl font-medium text-[var(--color-primary)] border border-gray-200 hover:bg-gray-50 transition-colors"
                   >
                     <User className="h-4 w-4" />
 
@@ -112,7 +123,7 @@ export default function Navbar() {
 
                   <button
                     onClick={handleLogout}
-                    className="px-5 py-2.5 rounded-xl text-white bg-red-500"
+                    className="px-3 py-1.5 text-xs rounded-xl font-medium text-white bg-red-500 hover:bg-red-600 transition-colors"
                   >
                     Logout
                   </button>
@@ -185,8 +196,19 @@ export default function Navbar() {
 
                   <>
                     <Link
+                      to={dashboardPath}
+                      onClick={() => setIsOpen(false)}
+                      className="flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-white bg-[var(--color-primary)] shadow-md"
+                    >
+                      <LayoutDashboard className="h-4 w-4" />
+
+                      Dashboard
+                    </Link>
+
+                    <Link
                       to="/profile"
-                      className="flex items-center gap-2 px-5 py-2.5 rounded-xl font-medium text-[var(--color-primary)] border"
+                      onClick={() => setIsOpen(false)}
+                      className="flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl font-medium text-[var(--color-primary)] border"
                     >
                       <User className="h-4 w-4" />
 
@@ -195,7 +217,7 @@ export default function Navbar() {
 
                     <button
                       onClick={handleLogout}
-                      className="px-5 py-2.5 rounded-xl text-white bg-red-500"
+                      className="px-5 py-2.5 rounded-xl font-medium text-white bg-red-500"
                     >
                       Logout
                     </button>
@@ -206,7 +228,8 @@ export default function Navbar() {
                   <>
                     <Link
                       to="/login"
-                      className="flex items-center gap-2 px-5 py-2.5 rounded-xl font-medium text-[var(--color-primary)] bg-white border-2 border-[var(--color-primary)]"
+                      onClick={() => setIsOpen(false)}
+                      className="flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl font-medium text-[var(--color-primary)] bg-white border-2 border-[var(--color-primary)]"
                     >
                       <User className="h-4 w-4" />
 
@@ -215,7 +238,8 @@ export default function Navbar() {
 
                     <Link
                       to="/register"
-                      className="px-5 py-2.5 rounded-xl font-medium text-white bg-[var(--color-primary)]"
+                      onClick={() => setIsOpen(false)}
+                      className="px-5 py-2.5 rounded-xl font-medium text-white bg-[var(--color-primary)] text-center"
                     >
                       Enroll Now
                     </Link>

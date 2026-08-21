@@ -1,11 +1,13 @@
 import { useState } from "react";
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Ship, Mail, Lock, ArrowRight } from 'lucide-react';
 import authBg from '../assets/images/auth_bg.png';
 import { loginUser } from "../services/authService";
-import { useNavigate } from "react-router-dom";
+import { enrollCourse } from "../services/enrollmentService";
+
 
 export default function Login() {
+  const location = useLocation();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
@@ -51,12 +53,54 @@ export default function Login() {
 
       } else {
 
-        navigate("/student/dashboard");
+        // Check if user clicked Enroll before login
+        const pendingCourse = JSON.parse(
+          sessionStorage.getItem("pendingCourse")
+        );
+
+        if (pendingCourse) {
+
+          try {
+
+            await enrollCourse({
+
+              course_id: pendingCourse.id,
+
+              course_name: pendingCourse.courseName,
+
+              category: pendingCourse.category,
+
+              fee: pendingCourse.feeUSD,
+
+              duration: pendingCourse.estimatedDuration,
+
+              certificate_type:
+                pendingCourse.certificateType || "",
+
+            });
+
+            // Remove temporary course data
+            sessionStorage.removeItem("pendingCourse");
+
+            // Next we'll build this page
+            navigate("/checkout");
+
+          } catch (error) {
+
+            console.log(error);
+
+          }
+
+        } else {
+
+          const redirectPath =
+            location.state?.from || "/student/dashboard";
+
+          navigate(redirectPath);
+
+        }
 
       }
-
-
-
       // later we will navigate to dashboard
 
     } catch (error) {
@@ -100,7 +144,8 @@ export default function Login() {
           <h1 className="text-3xl font-extrabold text-[var(--color-heading)] mb-2">Sign in to your account</h1>
           <p className="text-[var(--color-body)] mb-8">Don't have an account? <Link to="/register" className="text-[var(--color-primary)] hover:underline font-semibold">Enroll now</Link></p>
 
-          <form className="space-y-6" onSubmit={handleSubmit}>
+          {/* <form className="space-y-6" onSubmit={handleSubmit}> */}
+          <form className="space-y-6">
             <div>
               <label className="block text-sm font-medium text-[var(--color-heading)] mb-2">Email Address</label>
               <div className="relative">
@@ -137,7 +182,7 @@ export default function Login() {
             </div>
 
             <button
-              type="submit"
+              onClick={handleSubmit}
               className="w-full py-3.5 rounded-xl font-bold text-white bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] shadow-lg shadow-primary/30 transition-all flex items-center justify-center gap-2"
             >
               Sign In

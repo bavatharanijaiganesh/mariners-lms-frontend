@@ -1,6 +1,6 @@
 [
   {
-    "id": "c1",
+    "id": 1,
     "category": "Captain License",
     "courseName": "OUPV/Six-Pack Captain's License",
     "feeUSD": 695,
@@ -9,7 +9,7 @@
     "popular": true
   },
   {
-    "id": "c2",
+    "id": 2,
     "category": "Captain License",
     "courseName": "25/50 or 100-Ton Master Captain's License",
     "feeUSD": 895,
@@ -18,7 +18,7 @@
     "popular": true
   },
   {
-    "id": "c3",
+    "id": 3,
     "category": "Captain License Upgrade",
     "courseName": "OUPV Upgrade to 25/50 or 100-Ton Master",
     "feeUSD": 375,
@@ -26,7 +26,7 @@
     "description": "Upgrade your existing OUPV license to a Master license. Streamlined curriculum focusing on the advanced topics required for larger vessel operation."
   },
   {
-    "id": "e1",
+    "id": 4,
     "category": "Endorsement",
     "courseName": "Assistance Towing Endorsement",
     "feeUSD": 150,
@@ -34,7 +34,7 @@
     "description": "Add an assistance towing endorsement to your OUPV or Master's license, enabling you to legally engage in commercial towing operations."
   },
   {
-    "id": "e2",
+    "id": 5,
     "category": "Endorsement",
     "courseName": "Auxiliary Sailing Endorsement",
     "feeUSD": 150,
@@ -42,7 +42,7 @@
     "description": "Required for operating inspected sailing vessels. Learn the specific regulations and rules of the road for sail-powered vessels."
   },
   {
-    "id": "lr1",
+    "id": 6,
     "category": "License Renewal",
     "courseName": "Deck License Renewal",
     "feeUSD": 250,
@@ -50,7 +50,7 @@
     "description": "Fulfill your USCG requirements for deck license renewal with our updated and compliant renewal course."
   },
   {
-    "id": "rb1",
+    "id": 7,
     "category": "Recreational Boating",
     "courseName": "Mariners Crew",
     "feeUSD": 125,
@@ -58,7 +58,7 @@
     "description": "A fundamental course for recreational boaters focusing on basic safety, terminology, and crew responsibilities."
   },
   {
-    "id": "rb2",
+    "id": 8,
     "category": "Recreational Boating",
     "courseName": "Mariners Skipper",
     "feeUSD": 245,
@@ -66,7 +66,7 @@
     "description": "Step up to the helm with confidence. This course covers navigation, handling, and rules of the road for recreational skippers."
   },
   {
-    "id": "rb3",
+    "id": 9,
     "category": "Recreational Boating",
     "courseName": "Mariners Master Skipper of Power",
     "feeUSD": 345,
@@ -74,7 +74,7 @@
     "description": "Advanced powerboat handling and navigation for the dedicated recreational powerboater."
   },
   {
-    "id": "rb4",
+    "id": 10,
     "category": "Recreational Boating",
     "courseName": "Mariners Master Skipper of Sail",
     "feeUSD": 345,
@@ -82,7 +82,7 @@
     "description": "Master the art of sailing. In-depth coverage of sail trim, advanced navigation, and sail-specific safety."
   },
   {
-    "id": "rb5",
+    "id": 11,
     "category": "Recreational Boating",
     "courseName": "Mariners Master Skipper of Power & Sail",
     "feeUSD": 375,
@@ -90,7 +90,7 @@
     "description": "The ultimate recreational boating education, combining the curriculums of both Power and Sail Master Skipper courses."
   },
   {
-    "id": "ru1",
+    "id": 12,
     "category": "Recreational Upgrade",
     "courseName": "Crew Upgrade to Mariners Skipper",
     "feeUSD": 179,
@@ -98,7 +98,7 @@
     "description": "Transition from crew member to taking command of the vessel."
   },
   {
-    "id": "ru2",
+    "id": 13,
     "category": "Recreational Upgrade",
     "courseName": "Skipper Upgrade to Master Skipper of Power",
     "feeUSD": 125,
@@ -106,7 +106,7 @@
     "description": "Elevate your powerboating skills with this advanced skipper upgrade."
   },
   {
-    "id": "ru3",
+    "id": 14,
     "category": "Recreational Upgrade",
     "courseName": "Skipper Upgrade to Master Skipper of Sail",
     "feeUSD": 125,
@@ -114,7 +114,7 @@
     "description": "Take your sailing knowledge to the master level with advanced techniques."
   },
   {
-    "id": "ru4",
+    "id": 15,
     "category": "Recreational Upgrade",
     "courseName": "Skipper Upgrade to Master Skipper of Power & Sail",
     "feeUSD": 150,
@@ -122,7 +122,7 @@
     "description": "Comprehensive upgrade path to achieve Master Skipper status in both power and sail."
   },
   {
-    "id": "fcc1",
+    "id": 16,
     "category": "FCC License",
     "courseName": "Marine Radio Operator Permit (MROP)",
     "feeUSD": 150,
@@ -130,7 +130,7 @@
     "description": "Essential training for operating marine radios. Covers FCC regulations, operating procedures, and emergency protocols."
   },
   {
-    "id": "fcc2",
+    "id": 17,
     "category": "FCC License",
     "courseName": "General Radiotelephone Operator License (GROL)",
     "feeUSD": 150,
@@ -138,7 +138,7 @@
     "description": "Prepare for the GROL exam with comprehensive coverage of radio law, operating procedures, and basic electronics."
   },
   {
-    "id": "fcc3",
+    "id": 18,
     "category": "FCC License",
     "courseName": "GMDSS Radio Operator License",
     "feeUSD": 150,
@@ -146,7 +146,7 @@
     "description": "Training for operating Global Maritime Distress and Safety System equipment."
   },
   {
-    "id": "fcc4",
+    "id": 19,
     "category": "FCC License",
     "courseName": "Restricted GMDSS Radio Operator License",
     "feeUSD": 150,
@@ -154,7 +154,7 @@
     "description": "Focused training for operating specific GMDSS equipment in restricted sea areas."
   },
   {
-    "id": "fcc5",
+    "id": 20,
     "category": "FCC License",
     "courseName": "GMDSS Radio Maintainer License",
     "feeUSD": 225,
@@ -162,7 +162,7 @@
     "description": "Technical training for maintaining and repairing GMDSS equipment."
   },
   {
-    "id": "fcc6",
+    "id": 21,
     "category": "FCC License",
     "courseName": "GMDSS Operator/Maintainer License",
     "feeUSD": 300,
@@ -170,7 +170,7 @@
     "description": "Combined course for those who will both operate and maintain GMDSS systems."
   },
   {
-    "id": "fcce1",
+    "id": 22,
     "category": "FCC Endorsement",
     "courseName": "Ship Radar Endorsement",
     "feeUSD": 85,
@@ -178,7 +178,7 @@
     "description": "Add a radar endorsement to your existing FCC license. Covers radar operation and regulations."
   },
   {
-    "id": "fcx1",
+    "id": 23,
     "category": "FCC Exam",
     "courseName": "Element 1 Exam",
     "feeUSD": 85,
@@ -186,7 +186,7 @@
     "description": "Proctored examination for FCC Element 1: Basic radio law and operating practice."
   },
   {
-    "id": "fcx2",
+    "id": 24,
     "category": "FCC Exam",
     "courseName": "Element 3 Exam",
     "feeUSD": 85,
@@ -194,7 +194,7 @@
     "description": "Proctored examination for FCC Element 3: General radiotelephone."
   },
   {
-    "id": "fcx3",
+    "id": 25,
     "category": "FCC Exam",
     "courseName": "Element 7 Exam",
     "feeUSD": 85,
@@ -202,7 +202,7 @@
     "description": "Proctored examination for FCC Element 7: GMDSS radio operating practices."
   },
   {
-    "id": "fcx4",
+    "id": 26,
     "category": "FCC Exam",
     "courseName": "Element 7R Exam",
     "feeUSD": 85,
@@ -210,7 +210,7 @@
     "description": "Proctored examination for FCC Element 7R: Restricted GMDSS radio operating practices."
   },
   {
-    "id": "fcx5",
+    "id": 27,
     "category": "FCC Exam",
     "courseName": "Element 8 Exam",
     "feeUSD": 85,
@@ -218,7 +218,7 @@
     "description": "Proctored examination for FCC Element 8: Ship radar techniques."
   },
   {
-    "id": "fcx6",
+    "id": 28,
     "category": "FCC Exam",
     "courseName": "Element 9 Exam",
     "feeUSD": 85,
