@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import api from "../services/api";
 import {
     User,
     Mail,
@@ -88,16 +89,24 @@ export default function Profile() {
             try {
                 const response = await getProfile();
                 const profileData = response.data?.data || response.data;
-                if (profileData) {
-                    setUser(profileData);
-                    setFormData((prev) => ({
-                        ...prev,
-                        full_name: profileData.full_name || profileData.name || "Captain Mariner",
-                        email: profileData.email || "mariner@marinerslms.com",
-                        phone_number: profileData.phone_number || profileData.phone || "+91 91234 56789",
-                        role: profileData.role || "STUDENT",
-                    }));
-                }
+               if (profileData) {
+    console.log("PROFILE API DATA:", profileData);
+
+    setUser(profileData);
+
+    setFormData({
+        full_name: profileData.full_name || "",
+        email: profileData.email || "",
+        phone_number: profileData.phone_number || "",
+        role: profileData.role || "STUDENT",
+        rank: profileData.rank || "",
+        department: profileData.department || "",
+        location: profileData.location || "",
+        bio: profileData.bio || "",
+        emergency_contact: profileData.emergency_contact || "",
+        cdc_number: profileData.cdc_number || ""
+    });
+}
             } catch (error) {
                 console.log("Could not load API profile, loading local context:", error);
                 // Fallback to local storage user or default preview user
@@ -131,16 +140,67 @@ export default function Profile() {
         setFormData((prev) => ({ ...prev, [name]: value }));
     };
 
-    const handleSaveProfile = (e) => {
-        e.preventDefault();
-        setSaving(true);
-        setTimeout(() => {
-            setUser((prev) => ({ ...prev, ...formData }));
-            setIsEditing(false);
-            setSaving(false);
-            showToastMessage("Profile details updated successfully!");
-        }, 800);
-    };
+    const handleSaveProfile = async (e) => {
+    e.preventDefault();
+
+    setSaving(true);
+
+    try {
+        const response = await api.patch(
+            "accounts/profile/",
+            {
+                full_name: formData.full_name,
+                email: formData.email,
+                phone_number: formData.phone_number,
+                cdc_number: formData.cdc_number,
+                department: formData.department,
+                rank: formData.rank,
+                location: formData.location,
+                emergency_contact: formData.emergency_contact,
+                bio: formData.bio,
+            }
+        );
+
+        console.log("PROFILE UPDATE RESPONSE:", response.data);
+
+        const updatedProfile = response.data.data;
+
+        setUser(updatedProfile);
+
+        setFormData((prev) => ({
+            ...prev,
+            ...updatedProfile,
+        }));
+
+        localStorage.setItem(
+            "user",
+            JSON.stringify(updatedProfile)
+        );
+
+        setIsEditing(false);
+
+        showToastMessage(
+            "Profile details updated successfully!"
+        );
+
+    } catch (error) {
+
+        console.log(
+            "PROFILE UPDATE ERROR:",
+            error.response?.data || error
+        );
+
+        showToastMessage(
+            "Failed to update profile",
+            "error"
+        );
+
+    } finally {
+
+        setSaving(false);
+
+    }
+};
 
     const handlePasswordChange = (e) => {
         e.preventDefault();
@@ -563,9 +623,45 @@ export default function Profile() {
                                                     className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none text-sm font-medium transition-all"
                                                 />
                                             </div>
+                                            <div>
+    <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wider">
+        Location
+    </label>
+
+    <div className="relative">
+        <MapPin className="w-4 h-4 text-slate-400 absolute left-3.5 top-3.5" />
+
+        <input
+            type="text"
+            name="location"
+            value={formData.location}
+            onChange={handleFormChange}
+            placeholder="Mumbai, India"
+            className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none text-sm font-medium transition-all"
+        />
+    </div>
+</div>
+
                                         </div>
 
-                                        <div>
+                                  <div>
+    <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wider">
+        Emergency Contact
+    </label>
+
+    <div className="relative">
+        <Phone className="w-4 h-4 text-slate-400 absolute left-3.5 top-3.5" />
+
+        <input
+            type="text"
+            name="emergency_contact"
+            value={formData.emergency_contact}
+            onChange={handleFormChange}
+            placeholder="+91 98765 43210"
+            className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none text-sm font-medium transition-all"
+        />
+    </div>
+</div>      <div>
                                             <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wider">Professional Summary / Bio</label>
                                             <textarea
                                                 name="bio"

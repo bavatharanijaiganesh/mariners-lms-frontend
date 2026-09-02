@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: "http://127.0.0.1:8000/api/",
+    baseURL: "https://mariners-lms-backend.onrender.com/api/",
 });
 
 api.interceptors.request.use(
@@ -39,7 +39,7 @@ api.interceptors.response.use(
                 const refresh = localStorage.getItem("refresh");
 
                 const response = await axios.post(
-                    "http://127.0.0.1:8000/api/token/refresh/",
+                    "https://mariners-lms-backend.onrender.com/api/token/refresh/",
                     {
                         refresh,
                     }

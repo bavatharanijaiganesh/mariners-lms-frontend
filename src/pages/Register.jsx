@@ -23,19 +23,41 @@ export default function Register() {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    try {
-      const response = await registerUser(formData);
+  // Check passwords
+  if (formData.password !== formData.confirm_password) {
+    alert("Passwords do not match");
+    return;
+  }
 
-      console.log(response.data);
+  try {
+    const response = await registerUser(formData);
 
-    } catch (error) {
+    console.log(response.data);
 
-      console.log(error.response.data);
+    if (response.data.status === true) {
+      alert("Registration Successful! Please login.");
 
+      window.location.href = "/login";
     }
-  };
+
+  } catch (error) {
+
+    console.log(
+      "REGISTER ERROR:",
+      error.response?.data
+    );
+
+    const errors = error.response?.data?.errors;
+
+    if (errors) {
+      console.log("Validation Errors:", errors);
+    } else {
+      alert("Registration failed. Please try again.");
+    }
+  }
+};
   return (
     <div className="min-h-screen bg-[var(--color-background)] flex">
       {/* Left side - Image */}
