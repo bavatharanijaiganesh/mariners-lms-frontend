@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { getStudentCourseLessons } from "../services/studentCourseService";
+import { getStudentCourseLessons } from "../services/studentLessonService";
 
 export default function StudentCourse() {
 
