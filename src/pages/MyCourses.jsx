@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { getMyCourses } from "../services/enrollmentService";
-
+import { useNavigate } from "react-router-dom";
 export default function MyCourses() {
 
     const [courses, setCourses] = useState([]);
-
+    const navigate = useNavigate();
     useEffect(() => {
 
         fetchCourses();
@@ -26,6 +26,14 @@ export default function MyCourses() {
         }
 
     };
+
+    const startLearning = (course) => {
+
+    console.log("Selected course:", course);
+    console.log("Course ID:", course.course_id);
+
+    navigate(`/student/course/${course.course_id}`);
+};
 
     return (
 
@@ -82,13 +90,12 @@ export default function MyCourses() {
 
                                     </p>
 
-                                    <button
-                                        className="mt-4 bg-blue-600 text-white px-5 py-2 rounded"
-                                    >
-
-                                        Start Learning
-
-                                    </button>
+                        <button
+    onClick={() => startLearning(course)}
+    className="mt-4 bg-blue-600 text-white px-5 py-2 rounded"
+>
+    Start Learning
+</button>
 
                                 </div>
 

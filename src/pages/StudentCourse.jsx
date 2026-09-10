@@ -1,137 +1,104 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { getStudentCourseLessons } from "../services/studentLessonService";
+import { useNavigate } from "react-router-dom";
+import { getMyCourses } from "../services/enrollmentService";
 
-export default function StudentCourse() {
+export default function MyCourses() {
 
-    const { courseId } = useParams();
-
-    const [modules, setModules] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState("");
+    const [courses, setCourses] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
+        fetchCourses();
+    }, []);
 
-        const loadCourseLessons = async () => {
+    const fetchCourses = async () => {
 
-            try {
+        try {
 
-                setLoading(true);
+            const response = await getMyCourses();
 
-                const response = await getStudentCourseLessons(courseId);
+            console.log("MY COURSES:", response.data);
 
-                console.log("Student course lessons:", response.data);
+            setCourses(response.data);
 
-                setModules(response.data);
+        } catch (error) {
 
-            } catch (error) {
+            console.log("My courses error:", error);
 
-                console.log("Course lessons error:", error);
+        }
 
-                if (error.response?.status === 403) {
+    };
 
-                    setError(
-                        "You have not purchased this course."
-                    );
+    const startLearning = (course) => {
 
-                } else {
+        console.log("Starting course:", course);
+        console.log("Course ID:", course.course_id);
 
-                    setError(
-                        "Unable to load course lessons."
-                    );
+        navigate(`/student/course/${course.course_id}`);
 
-                }
-
-            } finally {
-
-                setLoading(false);
-
-            }
-        };
-
-        loadCourseLessons();
-
-    }, [courseId]);
-
-
-    if (loading) {
-        return <p className="p-8">Loading course...</p>;
-    }
-
-
-    if (error) {
-
-        return (
-            <div className="p-8">
-
-                <h2 className="text-2xl font-bold text-red-600">
-                    Access Denied
-                </h2>
-
-                <p className="mt-2">
-                    {error}
-                </p>
-
-            </div>
-        );
-
-    }
-
+    };
 
     return (
 
-        <div className="max-w-6xl mx-auto p-8">
+        <div className="max-w-7xl mx-auto p-8">
 
-            <h1 className="text-3xl font-bold mb-8">
-                My Course
+            <h1 className="text-4xl font-bold mb-8">
+                My Courses
             </h1>
 
-            {modules.map((module) => (
+            {
+                courses.length === 0 ?
 
-                <div
-                    key={module.id}
-                    className="bg-white shadow rounded-xl p-6 mb-6"
-                >
-
-                    <h2 className="text-xl font-bold">
-                        {module.order}. {module.title}
-                    </h2>
-
-                    <p className="text-gray-600 mt-2 mb-5">
-                        {module.description}
-                    </p>
-
-
-                    <div className="space-y-3">
-
-                        {module.lessons.map((lesson) => (
-
-                            <div
-                                key={lesson.id}
-                                className="border rounded-lg p-4"
-                            >
-
-                                <h3 className="font-semibold">
-                                    {lesson.order}. {lesson.title}
-                                </h3>
-
-                                <p className="text-sm text-gray-600">
-                                    {lesson.description}
-                                </p>
-
-                                <span className="text-sm text-blue-600">
-                                    {lesson.content_type}
-                                </span>
-
-                            </div>
-
-                        ))}
-
+                    <div className="bg-white rounded-xl shadow p-6">
+                        You haven't purchased any courses yet.
                     </div>
 
-                </div>
+                    :
 
-            ))}
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                        {
+                            courses.map((course) => (
+
+                                <div
+                                    key={course.id}
+                                    className="bg-white rounded-xl shadow p-6"
+                                >
+
+                                    <h2 className="text-xl font-bold">
+                                        {course.course_name}
+                                    </h2>
+
+                                    <p className="mt-2">
+                                        Category : {course.category}
+                                    </p>
+
+                                    <p>
+                                        Duration : {course.duration}
+                                    </p>
+
+                                    <p>
+                                        Amount : ${course.fee}
+                                    </p>
+
+                                    <p className="mt-2 text-green-600 font-semibold">
+                                        Status : {course.status}
+                                    </p>
+
+                                    <button
+                                        onClick={() => startLearning(course)}
+                                        className="mt-4 bg-blue-600 text-white px-5 py-2 rounded"
+                                    >
+                                        Start Learning
+                                    </button>
+
+                                </div>
+
+                            ))
+                        }
+
+                    </div>
+            }
 
         </div>
 

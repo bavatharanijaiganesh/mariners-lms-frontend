@@ -3,7 +3,7 @@ import { getModules, createModule } from "../services/moduleService";
 
 export default function ManageModules() {
 
-    const [courseId, setCourseId] = useState("c1");
+    const [courseId, setCourseId] = useState("1");
 
     const [modules, setModules] = useState([]);
 
@@ -122,19 +122,19 @@ export default function ManageModules() {
                     className="border rounded p-3 w-full"
                 >
 
-                    <option value="c1">
+                    <option value="1">
                         OUPV/Six-Pack Captain's License
                     </option>
 
-                    <option value="c2">
+                    <option value="2">
                         25/50 or 100-Ton Master Captain's License
                     </option>
 
-                    <option value="e2">
+                    <option value="3">
                         Auxiliary Sailing Endorsement
                     </option>
 
-                    <option value="rb2">
+                    <option value="4">
                         Mariners Skipper
                     </option>
 

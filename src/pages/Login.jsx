@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Ship, Mail, Lock, ArrowRight } from "lucide-react";
@@ -25,15 +26,25 @@ export default function Login() {
     e.preventDefault();
 
     try {
+      // =========================
+      // LOGIN
+      // =========================
+
       const response = await loginUser(formData);
 
       console.log("LOGIN RESPONSE:", response.data);
 
-      // Save Tokens
+      // =========================
+      // SAVE TOKENS
+      // =========================
+
       localStorage.setItem("access", response.data.access);
       localStorage.setItem("refresh", response.data.refresh);
 
-      // Save User
+      // =========================
+      // SAVE USER
+      // =========================
+
       localStorage.setItem(
         "user",
         JSON.stringify(response.data.user)
@@ -56,44 +67,111 @@ export default function Login() {
       // STUDENT LOGIN
       // =========================
 
-      // Check if user clicked Enroll before login
-      const pendingCourse = JSON.parse(
-        sessionStorage.getItem("pendingCourse")
-      );
+      const pendingCourseData =
+        sessionStorage.getItem("pendingCourse");
 
-      if (pendingCourse) {
-        try {
-          await enrollCourse({
-            course_id: pendingCourse.id,
-            course_name: pendingCourse.courseName,
-            category: pendingCourse.category,
-            fee: pendingCourse.feeUSD,
-            duration: pendingCourse.estimatedDuration,
-            certificate_type:
-              pendingCourse.certificateType || "",
-          });
+      // =========================
+      // NORMAL STUDENT LOGIN
+      // =========================
 
-          // Remove temporary course data
-          sessionStorage.removeItem("pendingCourse");
-
-          // Go to checkout
-          navigate("/checkout");
-        } catch (error) {
-          console.log(
-            "ENROLL ERROR:",
-            error.response?.data || error
-          );
-
-          alert("Login successful, but course enrollment failed.");
-        }
-      } else {
-        // Normal student login
+      if (!pendingCourseData) {
         const redirectPath =
           location.state?.from || "/student/dashboard";
 
         navigate(redirectPath);
+        return;
       }
+
+      // Convert stored course data
+      const pendingCourse = JSON.parse(pendingCourseData);
+
+      console.log(
+        "PENDING COURSE AFTER LOGIN:",
+        pendingCourse
+      );
+
+      // =========================
+      // CREATE ENROLLMENT
+      // =========================
+
+      try {
+        const enrollmentResponse = await enrollCourse({
+          course_id: pendingCourse.id,
+          course_name: pendingCourse.courseName,
+          category: pendingCourse.category,
+          fee: pendingCourse.feeUSD,
+          duration: pendingCourse.estimatedDuration,
+          certificate_type:
+            pendingCourse.certificateType || "",
+        });
+
+        console.log(
+          "ENROLLMENT CREATED:",
+          enrollmentResponse.data
+        );
+
+        // Remove pending course
+        sessionStorage.removeItem("pendingCourse");
+
+        // =========================
+        // GO TO CHECKOUT
+        // =========================
+
+        navigate("/checkout");
+
+      } catch (error) {
+        console.log(
+          "ENROLL ERROR:",
+          error.response?.data || error
+        );
+
+        const message =
+          error.response?.data?.message ||
+          error.response?.data?.detail ||
+          "";
+
+        // =========================
+        // ALREADY PAID
+        // =========================
+
+        if (
+          message ===
+          "You have already enrolled in this course."
+        ) {
+          console.log(
+            "Student already purchased this course."
+          );
+
+          // Remove pending course
+          sessionStorage.removeItem("pendingCourse");
+
+          // =========================
+          // GO DIRECTLY TO MY COURSE
+          // =========================
+
+          navigate(
+            `/my-courses/${pendingCourse.id}`
+          );
+
+          return;
+        }
+
+        // =========================
+        // OTHER ENROLLMENT ERROR
+        // =========================
+
+        alert(
+          message ||
+          "Login successful, but course enrollment failed."
+        );
+      }
+
     } catch (error) {
+
+      // =========================
+      // LOGIN ERROR
+      // =========================
+
       console.log(
         "LOGIN ERROR:",
         error.response?.data || error

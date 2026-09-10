@@ -25,8 +25,8 @@ import MyCourses from "./pages/MyCourses";
 import ManageModules from "./admin/ManageModules.jsx";
 import ManageLessons from "./admin/ManageLessons.jsx";
 import AdminCourseContent from "./admin/AdminCourseContent.jsx";
-import StudentCourse from "./pages/StudentCourse.jsx";
 
+import StudentCourse from "./pages/StudentCourse";
 
 function App() {
   return (
@@ -44,7 +44,7 @@ function App() {
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/my-courses" element={<MyCourses />} />
           <Route path="/my-courses/:courseId" element={<StudentCourse />} />
-
+          <Route path="/student/course/:courseId" element={<StudentCourse />}/>
           {/* <Route path="/admin/dashboard" element={<RoleProtectedRoute role="ADMIN"> <AdminDashboard />   </RoleProtectedRoute>} /> */}
 
 
