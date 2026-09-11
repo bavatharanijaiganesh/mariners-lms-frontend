@@ -180,36 +180,33 @@ export default function StudentCourse() {
                                     )}
 
                                     {/* VIDEO */}
-
-                                    {selectedLesson.content_type === "VIDEO" &&
-                                        selectedLesson.media_url && (
-
-                                            <div className="mt-6">
-
-                                                <video
-                                                    controls
-                                                    className="w-full rounded-lg"
-                                                    src={selectedLesson.media_url}
-                                                />
-
-                                            </div>
-                                        )}
+{selectedLesson.content_type === "VIDEO" &&
+    (selectedLesson.media_file || selectedLesson.media_url) && (
+        <div className="mt-6">
+            <video
+                controls
+                className="w-full rounded-lg"
+                src={selectedLesson.media_file || selectedLesson.media_url}
+            >
+                Your browser does not support video playback.
+            </video>
+        </div>
+    )}
 
                                     {/* SCREEN RECORDING */}
 
                                     {selectedLesson.content_type === "SCREEN" &&
-                                        selectedLesson.media_url && (
-
-                                            <div className="mt-6">
-
-                                                <video
-                                                    controls
-                                                    className="w-full rounded-lg"
-                                                    src={selectedLesson.media_url}
-                                                />
-
-                                            </div>
-                                        )}
+    (selectedLesson.media_file || selectedLesson.media_url) && (
+        <div className="mt-6">
+            <video
+                controls
+                className="w-full rounded-lg"
+                src={selectedLesson.media_file || selectedLesson.media_url}
+            >
+                Your browser does not support video playback.
+            </video>
+        </div>
+    )}
 
                                     {/* TEXT */}
 
