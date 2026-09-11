@@ -187,9 +187,7 @@ export default function StudentCourse() {
                 controls
                 className="w-full rounded-lg"
                 src={selectedLesson.media_file || selectedLesson.media_url}
-            >
-                Your browser does not support video playback.
-            </video>
+            />
         </div>
     )}
 
