@@ -7,7 +7,7 @@ import {
 
 export default function ManageLessons() {
 
-    const [courseId, setCourseId] = useState("c1");
+    const [courseId, setCourseId] = useState("1");
 
     const [modules, setModules] = useState([]);
 
@@ -140,7 +140,7 @@ export default function ManageLessons() {
 
             // Add file
             if (mediaFile) {
-                formData.append("resource_file", mediaFile);
+                formData.append("media_file", mediaFile);
             }
 
             const response = await createLesson(formData);
@@ -216,19 +216,19 @@ export default function ManageLessons() {
                     onChange={(e) => setCourseId(e.target.value)}
                     className="border rounded p-3 w-full"
                 >
-                    <option value="c1">
+                    <option value="1">
                         OUPV/Six-Pack Captain's License
                     </option>
 
-                    <option value="c2">
+                    <option value="2">
                         25/50 or 100-Ton Master Captain's License
                     </option>
 
-                    <option value="e2">
+                    <option value="3">
                         Auxiliary Sailing Endorsement
                     </option>
 
-                    <option value="rb2">
+                    <option value="4">
                         Mariners Skipper
                     </option>
                 </select>
