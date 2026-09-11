@@ -137,6 +137,7 @@ export default function ManageLessons() {
             formData.append("duration", duration);
             formData.append("order", Number(order));
             formData.append("is_preview", isPreview);
+            formData.append("is_active", true);
 
             // Add file
             if (mediaFile) {
