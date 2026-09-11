@@ -28,6 +28,10 @@ export default function StudentCourse() {
             const response = await getStudentCourseLessons(courseId);
 
             console.log("Student course lessons:", response.data);
+            console.log(
+    "LESSON DATA:",
+    response.data[0]?.lessons?.[0]
+);
 
             setModules(response.data);
 
